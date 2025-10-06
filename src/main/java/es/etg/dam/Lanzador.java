@@ -4,11 +4,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class App {
+public class Lanzador {
 
     public static void main(String[] args) {
 
-        final String[] comando = { "java", "-cp", "target/classes", "es.etg.dam.Suma", "3", "5" };
+        final String[] comando = { "java", "-cp", "target/classes", "es.etg.dam.Suma", "1", "3" };
 
         try {
 
