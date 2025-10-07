@@ -1,6 +1,14 @@
 package es.etg.dam;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Suma {
+
+    public static final String MSG_ERROR = "Solo se pueden usar valores numericos";
+    public static final String MSG_ERROR2 = "Hay que insertar dos parametros";
+    public static final String RUTA = "src/main/java/es/etg/dam/ouput.txt";
 
     public static void main(String[] args) {
 
@@ -16,12 +24,23 @@ public class Suma {
                 suma += i;
             }
 
-            System.out.println(suma);
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(RUTA))) {
+                writer.write(String.valueOf(suma));
+            }
 
+        } catch (NumberFormatException e) {
+            System.out.println(MSG_ERROR);
+            System.exit(1);
         }
 
-        catch (NumberFormatException e) {
+        catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println(MSG_ERROR2);
+            System.exit(1);
+        }
+
+        catch (IOException e) {
             System.out.println("Error");
+            System.exit(1);
         }
 
     }

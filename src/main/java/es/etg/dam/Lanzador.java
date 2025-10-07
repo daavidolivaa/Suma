@@ -8,6 +8,8 @@ public class Lanzador {
 
     public static void main(String[] args) {
 
+        
+
         final String[] comando = { "java", "-cp", "target/classes", "es.etg.dam.Suma", "1", "3" };
 
         try {
