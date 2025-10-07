@@ -1,20 +1,20 @@
 package es.etg.dam;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Lanzador {
 
+    public static final String RUTA_FICHERO = "output.txt";
+    public static final String[] COMANDO = { "java", "-cp", "target/classes", "es.etg.dam.Suma", "1", "3" };
+
     public static void main(String[] args) {
-
-        
-
-        final String[] comando = { "java", "-cp", "target/classes", "es.etg.dam.Suma", "1", "3" };
 
         try {
 
-            Process proceso = Runtime.getRuntime().exec(comando);
+            Process proceso = Runtime.getRuntime().exec(COMANDO);
 
             StringBuilder output = new StringBuilder();
 
@@ -30,6 +30,15 @@ public class Lanzador {
             if (exitVal == 0) {
                 System.out.println("Success!");
                 System.out.println(output);
+
+                try (BufferedReader br = new BufferedReader(new FileReader(RUTA_FICHERO))) {
+                    System.out.println("Contenido del fichero:");
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        System.out.println(line);
+                    }
+                }
+
                 System.exit(0);
             } else {
                 System.exit(1);
